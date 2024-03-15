@@ -1,9 +1,13 @@
-# cloudbuild.yaml
-
-# Define the build steps
 steps:
-  # Step 1: Checkout the source code from GitHub
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/roshanthomas9495/New_Project.git', '.']
-    
- 
+  # Step 1: SSH into the remote VM
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'compute'
+      - 'ssh'
+      - 'new-instance'  # Replace with your VM instance name
+      - '--zone'
+      - 'asia-south1-a'  # Replace with your VM's zone
+      - '--project'
+      - 'jmc-devsecops'  # Replace with your GCP project ID
+      - '--command'
+      - 'hostname'

@@ -11,4 +11,3 @@ steps:
       - 'jmc-devsecops'  # Replace with your GCP project ID
       - '--command'
       - 'hostname'
-      steps:

@@ -1,15 +1,20 @@
 steps:
-  # Step 1: SSH into the remote VM
+  # Step 1: SSH into the remote VM and execute commands
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'compute'
       - 'ssh'
-      - 'new-instance'  # Replace with your VM instance name
-      - '--zone'
+      - '--zone'  # Argument order corrected
       - 'asia-south1-a'  # Replace with your VM's zone
       - '--project'
       - 'jmc-devsecops'  # Replace with your GCP project ID
-      - '--command'
-      - 'hostname'
-- name: 'gcr.io/cloud-builders/docker'  # Use the official Docker builder
-  args: ['build', '-t', 'gcr.io/$jmc-devsecops/my-image:latest', '.']  # Build a Docker image
+      - 'new-instance'  # Replace with your VM instance name
+      - '--'  # Separates gcloud args from commands to execute on the VM
+      - 'hostname'  # Your intended commands to run on the VM
+      - '&&'  # Separate subsequent commands if needed
+      - 'other-command-1'  # Add more commands as needed
+      - 'other-command-2'
+
+  # Step 2: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image:latest', '.']  # Use environment variable for project ID

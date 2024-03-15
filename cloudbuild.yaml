@@ -12,5 +12,3 @@ steps:
       - '--command'
       - 'hostname'
       steps:
-- name: 'gcr.io/cloud-builders/docker'  # Use the official Docker builder
-  args: ['build', '-t', 'gcr.io/$jmc-devsecops/my-image:latest', '.']  # Build a Docker image

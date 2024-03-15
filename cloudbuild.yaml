@@ -5,5 +5,5 @@ steps:
   # Step 1: Checkout the source code from GitHub
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/roshanthomas9495/New_Project.git', '.']
-
+    
  

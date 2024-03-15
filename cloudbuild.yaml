@@ -16,5 +16,13 @@ steps:
       - 'other-command-2'
 
   # Step 2: Build the Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$jmc-devsecops/my-image:latest', '.']  # Use environment variable for project ID
+  - name: 'gcr.io/cloud-builders/docker'  # Use the official Docker builder
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image:latest', '.']
+
+# Push the image to Container Registry (if required)
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['docker', 'push', 'gcr.io/$PROJECT_ID/my-image:latest']
+
+# Deploy to your preferred service (e.g., Cloud Run)
+  - name: 'your-deployment-step'  # Customize for your deployment method
+    args: ['...']  # Replace with your deployment commands

@@ -17,4 +17,4 @@ steps:
 
   # Step 2: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image:latest', '.']  # Use environment variable for project ID
+    args: ['build', '-t', 'gcr.io/$jmc-devsecops/my-image:latest', '.']  # Use environment variable for project ID
